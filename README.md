@@ -1,7 +1,5 @@
 # 🎮 **RPG Tools** - O Cofre Secreto das Ferramentas Mágicas 🐉
 
-![RPG Vault Banner](https://via.placeholder.com/1200x200.png?text=RPG+Vault+-+Ferramentas+Mágicas)
-
 **Bem-vindo, aventureiro!** 🔮 Este repositório é um **cofre secreto** de ferramentas e **macros mágicas** que uso pessoalmente para tornar minha experiência de RPG ainda mais épica! 🚀
 
 Aqui, você vai encontrar:
