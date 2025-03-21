@@ -10,86 +10,90 @@ const fireBladeActive = activeEffects.includes("Lâmina Língua de Fogo");
 new Dialog({
     title: "🎇 Escolha de Ataques",
     content: `
-      <style>
-          .teste {
-              background: linear-gradient(135deg, #ff6b81, #ff9f00);
-              border-radius: 10px;
-              padding: 15px;
-              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-              color: #fff;
-              font-family: 'Arial', sans-serif;
-              margin-bottom: 10px;
-          }
-          
-          .teste legend {
-              font-size: 1.2em;
-              font-weight: bold;
-              margin-bottom: 10px;
-          }
-  
-          .teste label {
-              font-size: 1em;
-              color: #fff;
-              display: flex;
-              align-items: center;
-              margin-bottom: 10px;
-              cursor: pointer;
-          }
-  
-          .teste input[type="checkbox"], .teste input[type="radio"] {
-              margin-right: 10px;
-              width: 20px;
-              height: 20px;
-              accent-color: #ff6b81; /* Personaliza a cor do checkbox */
-          }
-  
-          .teste input[type="checkbox"]:checked, .teste input[type="radio"]:checked {
-              background-color: #ff6b81;
-              border-color: #ff6b81;
-          }
-  
-          fieldset {
-              border: none;
-              padding: 10px;
-          }
-  
-          #buffForm {
-              background-color: rgba(0, 0, 0, 0.4);
-              border-radius: 10px;
-              padding: 20px;
-              box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-              color: #fff;
-          }
-  
-          #buffForm label {
-              display: block;
-              padding: 8px 0;
-          }
-  
-          .dialog-buttons button {
-              background-color: #ff6b81;
-              color: white;
-              font-weight: bold;
-              border: none;
-              padding: 10px 20px;
-              border-radius: 5px;
-              cursor: pointer;
-              transition: background-color 0.3s ease;
-          }
-  
-          .dialog-buttons button:hover {
-              background-color: #ff9f00;
-          }
-  
-          .dialog-buttons button:focus {
-              outline: none;
-          }
-  
-          .dialog-buttons {
-              display: flex;
-              justify-content: space-between;
-          }
-      </style>
+    <style>
+        .teste {
+            background: linear-gradient(135deg, #ff6b81, #ff9f00);
+            color: #fff;
+        }
+        
+        legend {
+            font-size: 1.4rem;
+            font-weight: bold;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #ff6b81;
+            border-radius: 50%;
+            display: inline-block;
+            position: relative;
+            cursor: pointer;
+            background-color: white;
+        }
+
+        input[type="radio"]:checked::before,
+        input[type="checkbox"]:checked::before {
+            content: "";
+            width: 10px;
+            height: 10px;
+            background-color: #ff6b81;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        fieldset {
+            background: linear-gradient(135deg, #A7C7E7, #BFEFFF);
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            color: #1f1c1a;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        #buffForm {
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        #buffForm label {
+            display: block;
+        }
+
+        .dialog-buttons button {
+            background-color: #ff6b81;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .dialog-buttons button:hover {
+            background-color: #ff9f00;
+        }
+
+        .dialog-buttons button:focus {
+            outline: none;
+        }
+
+        .dialog-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
   
       <form id="buffForm">
         <fieldset class="teste">
@@ -100,9 +104,9 @@ new Dialog({
         </fieldset>
         <fieldset>
           <legend>Escolha um Truque</legend>
-          <label><input type="radio" name="cantrip" id="boomingBlade"/> Lâmina Estrondante (+2d8 trovejante no próximo ataque)</label><br>
-          <label><input type="radio" name="cantrip" id="flameBlade"/> Lâmina Ígnea (+2d8 ígneo no próximo ataque)</label><br>
-          <label><input type="radio" name="cantrip" id="trueStrike"/> True Strike (+2d6 radiante, TODO dano vira radiante)</label>
+          <label><input type="radio" name="cantrip" id="boomingBlade"/> Lâmina Estrondante</label><br>
+          <label><input type="radio" name="cantrip" id="flameBlade"/> Lâmina Ígnea</label><br>
+          <label><input type="radio" name="cantrip" id="trueStrike"/> True Strike</label>
         </fieldset>
       </form>
     `,
