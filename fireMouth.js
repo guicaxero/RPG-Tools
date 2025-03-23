@@ -133,16 +133,25 @@ new Dialog({
         callback: async (html) => {
           const fireBladeChecked = html.find("#fireBlade")[0].checked;
           const selectedCantrip = html.find("input[name='cantrip']:checked").attr("id");
+          const isFlameTongue = actor.items.find(i => i.name === 'Lamina de Fogo')
 
           if (fireBladeChecked !== fireBladeActive) {
             if (fireBladeChecked) {
                 await actor.createEmbeddedDocuments("ActiveEffect", [{
                 label: "Lâmina Língua de Fogo",
                 icon: "icons/skills/ranged/bullet-sparks-yellow.webp",
-                changes: [{ key: "system.bonuses.mwak.damage", mode: 2, value: "+2d6[fire]" }],
                 duration: { seconds: null }
                 }]);
-    
+                
+                if (isFlameTongue) {
+                  await isFlameTongue.update({
+                    "system.damage.parts": [
+                      ["1d6 + @abilities.dex.mod", "slashing"],
+                      ["2d6", "fire"]
+                    ]
+                  });
+                }
+                
                 let token = canvas.tokens.controlled[0];
                 if (token) {
                     await token.document.update({ 
@@ -160,6 +169,9 @@ new Dialog({
                 ui.notifications.info(`🔥 Lâmina Língua de Fogo ativada!`);
     
             } else {
+                if (isFlameTongue) {
+                  await isFlameTongue.update({ "system.damage.parts": [["1d6 + @abilities.dex.mod", "slashing"]] })
+                }
                 let effect = actor.effects.find(e => e.label === "Lâmina Língua de Fogo");
                 if (effect) await effect.delete();
     
