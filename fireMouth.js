@@ -133,7 +133,7 @@ new Dialog({
         callback: async (html) => {
           const fireBladeChecked = html.find("#fireBlade")[0].checked;
           const selectedCantrip = html.find("input[name='cantrip']:checked").attr("id");
-          const isFlameTongue = actor.items.find(i => i.name === 'Lamina de Fogo')
+          const isFlameTongue = actor.items.find(i => i.name === 'Lingua de Fogo')
 
           if (fireBladeChecked !== fireBladeActive) {
             if (fireBladeChecked) {
@@ -144,13 +144,15 @@ new Dialog({
                 }]);
                 
                 if (isFlameTongue) {
+                  let currentDamage = getProperty(isFlameTongue, "system.damage.parts") || [];
+                
+                  currentDamage.push(["2d6", "fire"]);
+                
                   await isFlameTongue.update({
-                    "system.damage.parts": [
-                      ["1d6 + @abilities.dex.mod", "slashing"],
-                      ["2d6", "fire"]
-                    ]
+                    "system.damage.parts": currentDamage
                   });
                 }
+                
                 
                 let token = canvas.tokens.controlled[0];
                 if (token) {
@@ -158,7 +160,7 @@ new Dialog({
                         "light.bright": 12,
                         "light.dim": 24,
                         "light.color": "#ff9900", 
-                        "light.alpha": 0.5, 
+                        "light.alpha": 0.1, 
                         "light.animation": { 
                             type: "pulse",
                             speed: 5,
@@ -169,9 +171,16 @@ new Dialog({
                 ui.notifications.info(`🔥 Lâmina Língua de Fogo ativada!`);
     
             } else {
-                if (isFlameTongue) {
-                  await isFlameTongue.update({ "system.damage.parts": [["1d6 + @abilities.dex.mod", "slashing"]] })
-                }
+              if (isFlameTongue) {
+                let currentDamage = getProperty(isFlameTongue, "system.damage.parts") || [];
+              
+                let updatedDamage = currentDamage.filter(damage => !(damage[0] === "2d6" && damage[1] === "fire"));
+              
+                await isFlameTongue.update({
+                  "system.damage.parts": updatedDamage
+                });
+              }
+              
                 let effect = actor.effects.find(e => e.label === "Lâmina Língua de Fogo");
                 if (effect) await effect.delete();
     
