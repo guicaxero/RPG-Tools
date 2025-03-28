@@ -137,30 +137,27 @@ new Dialog({
 
           if (fireBladeChecked !== fireBladeActive) {
             if (fireBladeChecked) {
-                await actor.createEmbeddedDocuments("ActiveEffect", [{
+              await actor.createEmbeddedDocuments("ActiveEffect", [{
                 label: "Lâmina Língua de Fogo",
-                icon: "icons/skills/ranged/bullet-sparks-yellow.webp",
-                duration: { seconds: null }
-                }]);
-                
-                if (isFlameTongue) {
-                  let currentDamage = getProperty(isFlameTongue, "system.damage.parts") || [];
-                
-                  currentDamage.push(["2d6", "fire"]);
-                
-                  await isFlameTongue.update({
-                    "system.damage.parts": currentDamage
-                  });
-                }
-                
-                
+                icon: "icons/magic/fire/beam-jet-stream-trails-orange.webp",
+                duration: { seconds: 99 },
+                changes: isFlameTongue ? [{
+                    key: "system.damage.parts",
+                    mode: CONST.ACTIVE_EFFECT_MODES.OVERRIDE,
+                    value: [
+                        ["1d6 + @abilities.dex.mod", "slashing"],
+                        ["2d6", "fire"]
+                    ]
+                }] : []
+              }]);
+               
                 let token = canvas.tokens.controlled[0];
                 if (token) {
                     await token.document.update({ 
                         "light.bright": 12,
                         "light.dim": 24,
                         "light.color": "#ff9900", 
-                        "light.alpha": 0.1, 
+                        "light.alpha": 0.5, 
                         "light.animation": { 
                             type: "pulse",
                             speed: 5,
@@ -171,16 +168,9 @@ new Dialog({
                 ui.notifications.info(`🔥 Lâmina Língua de Fogo ativada!`);
     
             } else {
-              if (isFlameTongue) {
-                let currentDamage = getProperty(isFlameTongue, "system.damage.parts") || [];
-              
-                let updatedDamage = currentDamage.filter(damage => !(damage[0] === "2d6" && damage[1] === "fire"));
-              
-                await isFlameTongue.update({
-                  "system.damage.parts": updatedDamage
-                });
-              }
-              
+                if (isFlameTongue) {
+                  await isFlameTongue.update({ "system.damage.parts": [["1d6 + @abilities.dex.mod", "slashing"]] })
+                }
                 let effect = actor.effects.find(e => e.label === "Lâmina Língua de Fogo");
                 if (effect) await effect.delete();
     
@@ -230,4 +220,3 @@ new Dialog({
       cancel: { label: "❌ Cancelar" }
     }
   }).render(true);
-  
