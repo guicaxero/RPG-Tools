@@ -1,5 +1,5 @@
-let sneakAttack = async function() {
-    const effectName = "Sneak Attack";
+let assassinate = async function() {
+    const effectName = "Assassinate";
     const target = game.user.character.getActiveTokens()[0];
 
     let existingEffect = target.actor.effects.find(ef => ef.label === effectName);
@@ -13,7 +13,7 @@ let sneakAttack = async function() {
                 {
                     key: "system.bonuses.weapon.damage",
                     mode: CONST.ACTIVE_EFFECT_MODES.ADD,
-                    value: "2d6",
+                    value: "@classes.rogue.levels",
                     priority: 20
                 }
             ],
@@ -24,4 +24,4 @@ let sneakAttack = async function() {
     }
 };
 
-sneakAttack();
+assassinate();
