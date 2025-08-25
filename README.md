@@ -24,8 +24,26 @@ Esta **app é totalmente pessoal**, criada para **facilitar minha jornada de RPG
 
 ---
 
-## ⚡ **Como Usar** 
+## ⚡ Como Usar
 
-1. **Clone o repositório** para seu computador:
-   ```bash
-   git clone https://github.com/guicaxero/RPG-Tools.git
+Siga estes passos para começar a usar as macros e templates do repositório no seu FoundryVTT:
+
+### 1. Escolha o que deseja usar
+- Navegue pelas pastas e veja os arquivos de **macro** ou **templates de ficha**.  
+- Cada arquivo contém instruções rápidas de uso no topo ou dentro do código.
+
+### 2. Crie uma nova macro no FoundryVTT
+- Abra sua sessão do FoundryVTT.  
+- Clique em `Macros` → `Create Macro`.  
+- Dê um nome à macro e escolha o tipo (ex: **Script** ou **Chat Command**).
+
+### 3. Cole o código da macro
+- Abra o arquivo desejado do repositório e copie o conteúdo.  
+- Cole dentro do campo de código da nova macro no FoundryVTT.
+
+### 4. Salve e teste a macro
+- Clique em `Save` e depois execute a macro para garantir que está funcionando.  
+- Ajustes podem ser feitos dependendo do seu módulo ou do cenário.
+
+### 5. Dicas Extras
+- Para templates de ficha, você pode duplicar ou importar diretamente dentro do Foundry.  
