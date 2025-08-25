@@ -1,5 +1,4 @@
 # 🎮 **RPG Tools** - O Cofre Secreto das Ferramentas Mágicas 🐉
-# 🎮 RPG Tools - O Cofre Secreto das Ferramentas Mágicas 🐉
 
 ![GitHub Repo stars](https://img.shields.io/github/stars/guicaxero/RPG-Tools?style=social)
 ![Made with ❤️](https://img.shields.io/badge/Made%20with-%E2%9D%A4-red)
