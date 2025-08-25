@@ -22,4 +22,4 @@ Esta **app é totalmente pessoal**, criada para **facilitar minha jornada de RPG
 
 1. **Clone o repositório** para seu computador:
    ```bash
-   git clone https://github.com/guicaxero/RPG-Vault.git
+   git clone https://github.com/guicaxero/RPG-Tools.git
